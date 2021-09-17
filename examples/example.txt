@@ -1,0 +1,36 @@
+# This machine takes and input w and will write w#w^r
+# (The input w, a "#" and then the input reversed)
+#
+# q_scan:
+#   Goes through the input and copies the input to the second tape.
+#   When the end of the input is reached, write the "#" to mark the midway point and transition to q_reverse.
+#
+# q_reverse:
+#    Goes through the copied input on the second tape backwards and appends the letters to the first tape.
+#    When the end of the second tape is reached, transition to q_end.
+#
+# q_end:
+#    Accepting state
+
+input: 10011
+states: q_scan, q_reverse, q_end
+initial: q_scan
+accept: q_end
+
+q_scan, 1, _
+q_scan, 1, 1, r, r
+
+q_scan, 0, _
+q_scan, 0, 0, r, r
+
+q_scan, _, _
+q_reverse, #, _, r, l
+
+q_reverse, _, 0
+q_reverse, 0, _, r, l
+
+q_reverse, _, 1
+q_reverse, 1, _, r, l
+
+q_reverse, _, _
+q_end, _, _, s, s

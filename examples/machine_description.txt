@@ -1,0 +1,40 @@
+# This is an example to show how a turing machine has to be defined for this program.
+
+# A line starting with a '#' is a comment.
+# At first some variables have to be defined.
+# After that the transitions can be defined.
+
+# This is a machine which accepts a binary word if it has an even number of zeros.
+
+# --------------------------------------------------
+# Declarations
+
+# the input written onto tape 0
+input: 1001100
+
+# list of all states the machine can be in
+states: q_0, q_1
+
+# the initial state, the machine starts in
+initial: q_0
+
+# list of comma separated states which are accepted
+accept: q_0
+
+# --------------------------------------------------
+# Transitions
+# the input in brackets is optional for more than one tape
+# [current state], [tape 0] (, [tape 1]...)
+# [next state], [tape 0], [direction for tape 0] (, [tape 1], [direction for tape 1]...)
+
+q_0, 1
+q_0, 1, r
+
+q_0, 0
+q_1, 0, r
+
+q_1, 1
+q_1, 1, r
+
+q_1, 0
+q_0, 0, r
